@@ -7,6 +7,7 @@ class HeaderPage {
         this.myAccountButton = Selector('.greet .logged-in');
         this.myAccountDropdown = Selector('.customer-name button');
         this.logoutButton = Selector('.customer-menu .authorization-link a');
+        this.welcomeMessage = Selector('.greet .logged-in').withText('Welcome, Automated Test!');
       }
 }
 
