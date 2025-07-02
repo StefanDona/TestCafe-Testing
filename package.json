@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "testcafe chrome tests/",
-    "test:all": "testcafe chrome tests/"
+    "test:all": "npx testcafe tests/"
   },
   "author": "Stefan",
   "license": "ISC",
-  "description": "Automated testing framework for Magento demo store using TestCafe",
+  "description": "Automated tests for eCommerce store using TestCafe",
   "devDependencies": {
     "chance": "1.1.12",
-    "testcafe": "3.7.2"
+    "testcafe": "3.7.2",
+    "testcafe-reporter-junit": "^3.0.2"
   }
 }
