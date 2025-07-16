@@ -1,6 +1,5 @@
 import { Selector, t } from "testcafe";
 import testData from "../data/testData";
-import { baseUrl } from "../.testcaferc";
 
 class LoginPage {
   constructor() {
@@ -13,7 +12,7 @@ class LoginPage {
   }
 
   async navigateToLoginPage() {
-    await t.navigateTo(`${baseUrl}/auth/login`);
+    await t.navigateTo(`/auth/login`);
     await t.expect(this.loginForm.exists).ok('Login form not found');
   }
 

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:all": "npx testcafe tests/"
+    "test:prod": "npx testcafe tests --base-url=https://practicesoftwaretesting.com"
   },
   "author": "Stefan",
   "license": "ISC",

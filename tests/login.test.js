@@ -4,17 +4,16 @@ import testData from "../data/testData";
 
 fixture`Authentication Tests`
     .beforeEach(async (t) => {
-        await t.maximizeWindow();
+        await t.maximizeWindow()
+        await LoginPage.navigateToLoginPage();
     })
 
 test('Login with valid credentials', async (t) => {
-    await LoginPage.navigateToLoginPage();
     await LoginPage.login();
     await t.expect(LoginPage.myAccountPageTitle.innerText).eql('My account', 'Failed to navigate to My Account page after login');
 });
 
 test('Login with invalid credentials displays error message', async (t) => {
-    await LoginPage.navigateToLoginPage();
     await LoginPage.login(
         testData.users.invalid.email,
         testData.users.invalid.password
@@ -24,7 +23,6 @@ test('Login with invalid credentials displays error message', async (t) => {
 });
 
 test('Login and logout successfully', async (t) => {
-    await LoginPage.navigateToLoginPage();
     await LoginPage.login();
     await t.click(HeaderPage.myAccountDropdown);
     await t.click(HeaderPage.logoutButton);

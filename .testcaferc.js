@@ -1,8 +1,7 @@
 const timeoutUnits = 10000;
 
 module.exports = {
-	browsers: "chrome:headless --disable-features=PasswordLeakDetection",
-	baseUrl: "https://practicesoftwaretesting.com/",
+	browsers: "chrome --disable-features=PasswordLeakDetection",
 	disablePageCaching: true,
 	disableMultipleWindows: true,
 	disableNativeAutomation: true,
@@ -13,7 +12,7 @@ module.exports = {
 		pathPatternOnFails: "${DATE}_${TIME}/failedTests/${FIXTURE}/${USERAGENT}/${TEST}.png",
 	},
 	concurrency: 1,
-	speed: 0.85,
+	speed: 1,
 	pageLoadTimeout: 20000,
 	assertionTimeout: timeoutUnits,
 	selectorTimeout: timeoutUnits,
