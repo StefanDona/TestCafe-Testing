@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:prod": "npx testcafe tests --base-url=https://practicesoftwaretesting.com"
   },
   "author": "Stefan",
   "license": "ISC",
-  "description": ""
+  "description": "Automated tests for eCommerce store using TestCafe",
+  "devDependencies": {
+    "chance": "1.1.12",
+    "testcafe": "3.7.2",
+    "testcafe-reporter-junit": "^3.0.2"
+  }
 }
