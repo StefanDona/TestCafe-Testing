@@ -8,14 +8,14 @@ fixture`Authentication Tests`.beforeEach(async (t) => {
   await LoginPage.navigateToLoginPage();
 });
 
-test("Login with valid credentials", async (t) => {
+test("Validate login with valid credentials", async (t) => {
   await LoginPage.login();
   await t
     .expect(LoginPage.myAccountPageTitle.innerText)
     .eql("My account", "Failed to navigate to My Account page after login");
 });
 
-test("Login with invalid credentials displays error message", async (t) => {
+test("Validate login with invalid credentials displays error message", async (t) => {
   await LoginPage.login(
     process.env.INVALID_EMAIL,
     process.env.INVALID_PASSWORD,

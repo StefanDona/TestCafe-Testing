@@ -6,7 +6,9 @@
   "scripts": {
     "test:headed": "npx testcafe chrome tests --base-url=https://practicesoftwaretesting.com",
     "test:headless": "npx testcafe tests --base-url=https://practicesoftwaretesting.com",
-    "test:html": "npx testcafe tests --base-url=https://practicesoftwaretesting.com --reporter html:results/output.html"
+    "test:html": "npx testcafe tests --base-url=https://practicesoftwaretesting.com --reporter html:results/output.html",
+    "prettier:check": "npx prettier --check .",
+    "prettier:fix": "npx prettier --write ."
   },
   "author": "Stefan",
   "license": "ISC",
