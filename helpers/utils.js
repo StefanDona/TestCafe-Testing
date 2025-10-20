@@ -1,6 +1,6 @@
 import { t } from "testcafe";
 
-class TestHelpers {
+class Utils {
   constructor() {}
   async selectOptionFromDropdown(select, value) {
     const option = select.find("option");
@@ -54,4 +54,4 @@ class TestHelpers {
   }
 }
 
-export default new TestHelpers();
+export default new Utils();

@@ -1,6 +1,6 @@
 import { Selector, t } from "testcafe";
 import Chance from "chance";
-import Helpers from "../helpers/testHelpers";
+import Utils from "../helpers/utils";
 
 const chance = new Chance();
 
@@ -47,7 +47,7 @@ class RegisterPage {
     });
     await t.typeText(this.city, city, { paste: true, replace: true });
     await t.typeText(this.state, state, { paste: true, replace: true });
-    await Helpers.selectRandomOptionFromDropdown(this.countryDropdown);
+    await Utils.selectRandomOptionFromDropdown(this.countryDropdown);
     await t.typeText(this.phone, phone, { paste: true, replace: true });
     await t.typeText(this.email, email, { paste: true, replace: true });
     await t.typeText(this.psw, password, { paste: true, replace: true });
