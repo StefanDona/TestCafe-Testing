@@ -9,6 +9,7 @@ class HeaderPage {
     this.logoutButton = Selector(".nav-item .dropdown-item").withExactText(
       "Sign out",
     );
+    this.cartButton = Selector('.nav-item [data-test="nav-cart"]');
   }
 }
 
