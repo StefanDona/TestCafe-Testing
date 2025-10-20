@@ -29,6 +29,7 @@ TESTCAFE-TESTING/
 ├── docs/              # Documentation
 └── package.json       # Project dependencies
 ```
+
 ### Prerequisites
 
 - Node.js (v14 or higher)
@@ -37,17 +38,20 @@ TESTCAFE-TESTING/
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/StefanDona/TESTCAFE-TESTING.git
 cd TESTCAFE-TESTING
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Create a `.env` file in the root directory with your test credentials:
+
 ```env
 EMAIL=your-test-email@example.com
 PASSWORD=your-test-password
@@ -58,21 +62,25 @@ INVALID_PASSWORD=wrongpassword
 ## 🧪 Running Tests
 
 ### Run all tests in headless mode
+
 ```bash
 npm run test:headless
 ```
 
 ### Run all tests in headed mode (visible browser)
+
 ```bash
 npm run test:headed
 ```
 
 ### Generate HTML report
+
 ```bash
 npm run test:html
 ```
 
 ### Run specific test file
+
 ```bash
 npx testcafe chrome tests/login.test.js --base-url=https://practicesoftwaretesting.com
 ```
@@ -80,20 +88,24 @@ npx testcafe chrome tests/login.test.js --base-url=https://practicesoftwaretesti
 ## 📝 Test Suites
 
 ### Authentication Tests (`login.test.js`)
+
 - ✅ Login with valid credentials
 - ✅ Login with invalid credentials
 - ✅ Login and logout functionality
 
 ### Registration Tests (`register.test.js`)
+
 - ✅ User registration flow
 - ✅ Form validation
 
 ### Catalog Tests (`catalog.test.js`)
+
 - ✅ Product browsing
 - ✅ Product filtering
 - ✅ Product search
 
 ### Order Placement Tests (`placeOrder.test.js`)
+
 - ✅ Add products to cart
 - ✅ Checkout process
 - ✅ Order confirmation
@@ -110,6 +122,7 @@ npx testcafe chrome tests/login.test.js --base-url=https://practicesoftwaretesti
 ## 📊 Reports
 
 Test reports are generated in the following locations:
+
 - HTML reports: `results/output.html` (when using `npm run test:html`)
 - JUnit XML reports: `reports/junit-report.xml`
 - Screenshots: `screenshots/` directory (on test failures)
@@ -117,11 +130,13 @@ Test reports are generated in the following locations:
 ## 🎨 Code Formatting
 
 ### Check code formatting
+
 ```bash
 npm run prettier:check
 ```
 
 ### Fix code formatting
+
 ```bash
 npm run prettier:fix
 ```
@@ -129,13 +144,10 @@ npm run prettier:fix
 ## 📐 Page Object Model
 
 This project follows the Page Object Model (POM) design pattern, which provides:
+
 - **Maintainability**: Centralized element selectors and page interactions
 - **Reusability**: Page methods can be used across multiple tests
 - **Readability**: Tests are more readable and easier to understand
-
-## 👤 Author
-
-**Stefan**
 
 ## 🔗 Links
 
