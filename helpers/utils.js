@@ -52,6 +52,35 @@ class Utils {
     await select.find(randomSelector);
     await t.click(await randomSelector.with({ timeout: 300 }));
   }
+
+  async getCategoryIdByName(categoryName) {
+    const response = await t.request({
+      url: "https://api.practicesoftwaretesting.com/categories",
+      method: "GET",
+    });
+
+    const categories = response.body;
+    const category = categories.find((cat) => cat.name === categoryName);
+
+    if (category) {
+      return category.id;
+    } else {
+      throw new Error(`Category with name "${categoryName}" not found`);
+    }
+  }
+
+  async getProductsByCategoryId(categoryId) {
+    const response = await t.request({
+      url: `https://api.practicesoftwaretesting.com/products?by_category=${categoryId}`,
+      method: "GET",
+    });
+    const products = response.body.data;
+    return products.map((product) => ({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+    }));
+  }
 }
 
 export default new Utils();

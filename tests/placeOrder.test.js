@@ -10,42 +10,60 @@ fixture`Place Order Tests`.beforeEach(async (t) => {
 });
 
 test("Place an order as a registered user", async (t) => {
+  const categoryId = await Utils.getCategoryIdByName("Pliers");
+  const products = await Utils.getProductsByCategoryId(categoryId);
+  const product = products[0];
+
   await LoginPage.navigateToLoginPage();
   await LoginPage.login();
-  await t.navigateTo(
-    "https://practicesoftwaretesting.com/product/01K806P9X6K02DDQ9651HTEKDD",
-  );
+  await t.navigateTo(`/product/${product.id}`);
   await t.click(PlaceOrderPage.addToCartButton);
   await t
     .expect(PlaceOrderPage.addToCartMessage.innerText)
     .eql("Product added to shopping cart.");
   await t.click(HeaderPage.cartButton);
   await t.expect(PlaceOrderPage.productQuantity.value).eql("1");
-  await t.expect(PlaceOrderPage.productPrice.innerText).eql("$12.01");
+  await t
+    .expect(PlaceOrderPage.productPrice.innerText)
+    .eql(`$${product.price}`);
   await t.click(PlaceOrderPage.proceedToCheckoutButton);
   await t
     .expect(PlaceOrderPage.continueAsGuestConfirmation.innerText)
     .eql(
-      "Hello Jane Doe, you are already logged in. You can proceed to checkout.",
+      "Hello Jack Howe, you are already logged in. You can proceed to checkout.",
     );
   await t.click(PlaceOrderPage.proceedToCheckoutButtonStep2);
-  await t.click(PlaceOrderPage.proceedToCheckoutButtonStep3);
-  await Utils.selectOptionFromDropdown(
-    PlaceOrderPage.paymentMethodDropdown,
-    "Bank Transfer",
-  );
+  await PlaceOrderPage.fillBillingAddress();
+  await PlaceOrderPage.fillPaymentDetails();
+  await t.click(PlaceOrderPage.confirmButton);
+  await t
+    .expect(PlaceOrderPage.confirmationMessage.innerText)
+    .eql("Payment was successful");
 });
 
-test.only("Place an order as a guest user", async (t) => {
-  await t.navigateTo(
-    "https://practicesoftwaretesting.com/product/01K806P9X6K02DDQ9651HTEKDD",
-  );
+test("Place an order as a guest user", async (t) => {
+  const categoryId = await Utils.getCategoryIdByName("Pliers");
+  const products = await Utils.getProductsByCategoryId(categoryId);
+  const product = products[0];
+
+  await t.navigateTo(`product/${product.id}`);
   await t.click(PlaceOrderPage.addToCartButton);
   await t
     .expect(PlaceOrderPage.addToCartMessage.innerText)
     .eql("Product added to shopping cart.");
   await t.click(HeaderPage.cartButton);
   await t.expect(PlaceOrderPage.productQuantity.value).eql("1");
-  await t.expect(PlaceOrderPage.productPrice.innerText).eql("$12.01");
+  await t
+    .expect(PlaceOrderPage.productPrice.innerText)
+    .eql(`$${product.price}`);
   await t.click(PlaceOrderPage.proceedToCheckoutButton);
+  await t.click(PlaceOrderPage.continueAsGuestButton);
+  await PlaceOrderPage.fillGuestDetails();
+  await t.click(PlaceOrderPage.proceedToCheckoutButtonStep2);
+  await PlaceOrderPage.fillBillingAddress();
+  await PlaceOrderPage.fillPaymentDetails();
+  await t.click(PlaceOrderPage.confirmButton);
+  await t
+    .expect(PlaceOrderPage.confirmationMessage.innerText)
+    .eql("Payment was successful");
 });
