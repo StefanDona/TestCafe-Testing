@@ -1,163 +1,262 @@
-# TestCafe Testing Project
+# 🛒 E2E Testing Suite for eCommerce Platform
 
 Automated end-to-end testing suite for an eCommerce store using TestCafe and the Page Object Model (POM) pattern.
 
 ## 📋 Overview
 
-This project contains automated tests for [Practice Software Testing](https://practicesoftwaretesting.com), an eCommerce application. The tests cover essential user flows including authentication, product catalog browsing, and order placement.
+A comprehensive End-to-End (E2E) automated testing suite for the **Practice Software Testing** eCommerce platform ([https://practicesoftwaretesting.com](https://practicesoftwaretesting.com)). This project is built using **TestCafe** framework with **JavaScript** and follows the **Page Object Model (POM)** design pattern to ensure maintainability, scalability, and code reusability.
 
-## 🏗️ Project Structure
+---
 
-```
-TESTCAFE-TESTING/
-├── tests/              # Test specifications
-│   ├── catalog.test.js
-│   ├── login.test.js
-│   ├── placeOrder.test.js
-│   └── register.test.js
-├── pages/              # Page Object Model classes
-│   ├── CatalogPage.js
-│   ├── HeaderPage.js
-│   ├── LoginPage.js
-│   ├── PlaceOrderPage.js
-│   └── RegisterPage.js
-├── helpers/            # Utility functions
-│   └── utils.js
-├── reports/            # Test reports
-│   └── junit-report.xml
-├── screenshots/        # Test screenshots
-├── docs/              # Documentation
-└── package.json       # Project dependencies
-```
+## 🚀 Tech Stack
 
-### Prerequisites
+- **TestCafe** (v3.7.2) - Modern E2E testing framework
+- **JavaScript (ES6+)** - Programming language
+- **Page Object Model (POM)** - Design pattern for better test structure
+- **dotenv** - Environment variable management
+- **JUnit Reporter** - XML test reports
+- **HTML Reporter** - Human-readable test reports
+- **Chance.js** - Random data generation for tests
 
-- Node.js (v14 or higher)
-- npm (v6 or higher)
+---
 
-### Installation
+## 📦 Prerequisites
 
-1. Clone the repository:
+Before setting up the project, ensure you have the following installed:
+
+- **Node.js** (v14 or higher) - [Download here](https://nodejs.org/)
+- **npm** (comes with Node.js)
+- A modern web browser (Chrome, Firefox, or Edge)
+
+---
+
+## ⚙️ Environment Setup
+
+### 🔐 Important: Secure Configuration
+
+This project uses environment variables to store sensitive data such as credentials. **Never commit your `.env` file to version control.**
+
+### Steps:
+
+1. Create a `.env` file in the root directory:
+   ```bash
+   touch .env
+   ```
+
+2. Add your environment variables (use the template below):
+   ```env
+   # Test User Credentials
+   TEST_EMAIL=your-test-email@example.com
+   TEST_PASSWORD=your-secure-password
+   
+   # Base URL (Optional - already configured in scripts)
+   BASE_URL=https://practicesoftwaretesting.com
+   ```
+
+3. **Verify** that `.env` is listed in your `.gitignore` file (it should be).
+
+---
+
+## 📥 Installation
+
+Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/StefanDona/TESTCAFE-TESTING.git
+# Clone the repository
+git clone <your-repository-url>
 cd TESTCAFE-TESTING
-```
 
-2. Install dependencies:
-
-```bash
+# Install dependencies
 npm install
 ```
 
-3. Create a `.env` file in the root directory with your test credentials:
-
-```env
-EMAIL=your-test-email@example.com
-PASSWORD=your-test-password
-INVALID_EMAIL=invalid@example.com
-INVALID_PASSWORD=wrongpassword
-```
+---
 
 ## 🧪 Running Tests
 
-### Run all tests in headless mode
-
+### Run All Tests (Headless Mode)
 ```bash
 npm run test:headless
 ```
 
-### Run all tests in headed mode (visible browser)
-
+### Run All Tests (Headed Mode - Chrome)
 ```bash
 npm run test:headed
 ```
 
-### Generate HTML report
+### Run Specific Test File
+```bash
+# Run login tests
+npx testcafe chrome tests/login.test.js
+
+# Run catalog tests
+npx testcafe chrome tests/catalog.test.js
+
+# Run place order tests
+npx testcafe chrome tests/placeOrder.test.js
+
+# Run register tests
+npx testcafe chrome tests/register.test.js
+```
+
+### Run Tests on Specific Browsers
+```bash
+# Chrome
+npx testcafe chrome tests
+
+# Firefox
+npx testcafe firefox tests
+
+# Edge
+npx testcafe edge tests
+
+# Multiple browsers
+npx testcafe chrome,firefox tests
+```
+
+### Generate HTML Report
+```bash
+npm run test:html
+```
+
+---
+
+## 📂 Project Structure
+
+```
+TESTCAFE-TESTING/
+├── tests/                      # Test specifications
+│   ├── catalog.test.js         # Product catalog tests
+│   ├── login.test.js           # User authentication tests
+│   ├── placeOrder.test.js      # Order placement tests
+│   └── register.test.js        # User registration tests
+├── pages/                      # Page Object Model classes
+│   ├── CatalogPage.js          # Catalog page selectors & methods
+│   ├── HeaderPage.js           # Header component selectors
+│   ├── LoginPage.js            # Login page selectors & methods
+│   ├── PlaceOrderPage.js       # Checkout page selectors & methods
+│   └── RegisterPage.js         # Registration page selectors & methods
+├── helpers/                    # Utility functions
+│   └── utils.js                # Reusable helper methods
+├── reports/                    # Test execution reports
+│   └── junit-report.xml        # JUnit XML report
+├── screenshots/                # Test failure screenshots
+│   └── [timestamp]/            # Organized by execution time
+│       └── failedTests/        # Screenshots of failed tests
+├── docs/                       # Additional documentation
+├── .env                        # Environment variables (⚠️ DO NOT COMMIT)
+├── .gitignore                  # Git ignore rules
+├── .testcaferc.js              # TestCafe configuration
+├── package.json                # Project dependencies & scripts
+└── README.md                   # This file
+```
+
+---
+
+## 📊 Test Reporting
+
+### JUnit Reports
+After test execution, JUnit XML reports are generated in the `reports/` directory:
+
+```
+reports/junit-report.xml
+```
+
+These reports can be integrated with CI/CD tools like Jenkins, GitLab CI, or GitHub Actions.
+
+### HTML Reports
+Generate human-readable HTML reports:
 
 ```bash
 npm run test:html
 ```
 
-### Run specific test file
+Reports will be saved in `results/output.html`.
 
-```bash
-npx testcafe chrome tests/login.test.js --base-url=https://practicesoftwaretesting.com
+### Failure Screenshots
+When tests fail, screenshots are automatically captured and saved in:
+
+```
+screenshots/[timestamp]/failedTests/[test-name]/
 ```
 
-## 📝 Test Suites
+---
 
-### Authentication Tests (`login.test.js`)
+## 🛠️ Code Quality
 
-- ✅ Login with valid credentials
-- ✅ Login with invalid credentials
-- ✅ Login and logout functionality
-
-### Registration Tests (`register.test.js`)
-
-- ✅ User registration flow
-- ✅ Form validation
-
-### Catalog Tests (`catalog.test.js`)
-
-- ✅ Product browsing
-- ✅ Product filtering
-- ✅ Product search
-
-### Order Placement Tests (`placeOrder.test.js`)
-
-- ✅ Add products to cart
-- ✅ Checkout process
-- ✅ Order confirmation
-
-## 🛠️ Technologies Used
-
-- **TestCafe** (v3.7.2) - End-to-end testing framework
-- **Chance.js** (v1.1.12) - Random data generation for tests
-- **dotenv** (v17.2.0) - Environment variable management
-- **Prettier** (v3.6.2) - Code formatting
-- **TestCafe HTML Reporter** (v1.4.6) - HTML test reports
-- **TestCafe JUnit Reporter** (v3.0.2) - JUnit XML reports
-
-## 📊 Reports
-
-Test reports are generated in the following locations:
-
-- HTML reports: `results/output.html` (when using `npm run test:html`)
-- JUnit XML reports: `reports/junit-report.xml`
-- Screenshots: `screenshots/` directory (on test failures)
-
-## 🎨 Code Formatting
-
-### Check code formatting
+### Prettier Configuration
+This project uses Prettier for consistent code formatting.
 
 ```bash
+# Check code formatting
 npm run prettier:check
-```
 
-### Fix code formatting
-
-```bash
+# Auto-fix formatting issues
 npm run prettier:fix
 ```
 
-## 📐 Page Object Model
+---
 
-This project follows the Page Object Model (POM) design pattern, which provides:
+## 🧩 Page Object Model (POM) Pattern
 
-- **Maintainability**: Centralized element selectors and page interactions
-- **Reusability**: Page methods can be used across multiple tests
-- **Readability**: Tests are more readable and easier to understand
+The project follows POM to separate test logic from page-specific code:
 
-## 🔗 Links
+**Benefits:**
+- ✅ Improved test maintainability
+- ✅ Reduced code duplication
+- ✅ Easier updates when UI changes
+- ✅ Better readability
 
-- [TestCafe Documentation](https://testcafe.io/documentation/402635/getting-started)
-- [Practice Software Testing](https://practicesoftwaretesting.com)
+**Example:**
+```javascript
+// pages/LoginPage.js
+import { Selector } from 'testcafe';
+
+class LoginPage {
+    constructor() {
+        this.emailInput = Selector('[data-test="email"]');
+        this.passwordInput = Selector('[data-test="password"]');
+        this.loginButton = Selector('[data-test="login-submit"]');
+    }
+}
+
+export default new LoginPage();
+```
+
+---
+
+## 📝 Test Scenarios Covered
+
+### 🔐 Authentication Tests (`login.test.js`)
+- Valid user login
+- Invalid credentials handling
+- Login form validation
+
+### 📦 Catalog Tests (`catalog.test.js`)
+- Product search functionality
+- Product filtering
+- Product details display
+
+### 🛍️ Order Tests (`placeOrder.test.js`)
+- Add products to cart
+- Checkout process
+- Order confirmation
+
+### 👤 Registration Tests (`register.test.js`)
+- New user registration
+- Form validation
+- Duplicate email handling
+
+## 👨‍💻 Author
+
+**Stefan**
+
+## 📚 Additional Resources
+
+- [TestCafe Documentation](https://testcafe.io/documentation)
 - [Page Object Model Pattern](https://testcafe.io/documentation/402826/guides/concepts/page-model)
+- [Practice Software Testing Site](https://practicesoftwaretesting.com)
 
-## 📝 Notes
+---
 
-- Tests are configured to run against `https://practicesoftwaretesting.com`
-- Browser windows are maximized before each test
-- Environment variables are used for sensitive test data
-- Screenshots are automatically captured on test failures
+**Happy Testing! 🚀**
