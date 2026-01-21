@@ -247,59 +247,9 @@ export default new LoginPage();
 - Form validation
 - Duplicate email handling
 
----
-
-## 🔒 Security Best Practices
-
-⚠️ **CRITICAL REMINDERS:**
-
-1. **Never commit `.env` file** - It contains sensitive credentials
-2. **Use strong passwords** for test accounts
-3. **Rotate credentials regularly** if using production-like environments
-4. **Review `.gitignore`** before pushing to ensure sensitive files are excluded
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-test`)
-3. Commit your changes (`git commit -m 'Add amazing test'`)
-4. Push to the branch (`git push origin feature/amazing-test`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the ISC License.
-
----
-
 ## 👨‍💻 Author
 
 **Stefan**
-
----
-
-## 🐛 Troubleshooting
-
-### Common Issues:
-
-**Tests fail with "Cannot find module":**
-```bash
-npm install
-```
-
-**Environment variables not loading:**
-- Ensure `.env` file exists in the root directory
-- Check that `require('dotenv').config()` is called at the top of test files
-
-**Browser not launching:**
-- Update TestCafe: `npm install testcafe@latest`
-- Verify browser is installed on your system
-
----
 
 ## 📚 Additional Resources
 
